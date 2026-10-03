@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Space Explorer</title>
+  <meta name="description" content="Daily NASA imagery, the live position of the ISS and a searchable space gallery." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%80%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#top">Space Explorer</a>
+    <nav>
+      <a href="#earth">Earth view</a>
+      <a href="#iss">ISS tracker</a>
+      <a href="#gallery">Gallery</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section id="earth" class="section">
+      <div class="head">
+        <h2>Earth from 1.5 million km away</h2>
+        <label class="date">
+          <span>Pick a date</span>
+          <input type="date" id="earth-date" min="2015-06-13" />
+        </label>
+      </div>
+      <div id="earth-content" aria-live="polite"></div>
+    </section>
+
+    <section id="iss" class="section">
+      <div class="head">
+        <h2>International Space Station</h2>
+        <span class="pill" id="iss-status"><i></i><b>Connecting</b></span>
+      </div>
+      <div class="iss-wrap">
+        <div id="map" role="img" aria-label="World map showing the current position of the ISS"></div>
+        <dl class="stats">
+          <div><dt>Latitude</dt><dd id="iss-lat">–</dd></div>
+          <div><dt>Longitude</dt><dd id="iss-lon">–</dd></div>
+          <div><dt>Altitude</dt><dd id="iss-alt">–</dd></div>
+          <div><dt>Speed</dt><dd id="iss-vel">–</dd></div>
+          <div><dt>Sunlight</dt><dd id="iss-vis">–</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="gallery" class="section">
+      <div class="head">
+        <h2>Image gallery</h2>
+        <form id="search" role="search">
+          <input type="search" id="q" placeholder="Search NASA images" aria-label="Search NASA images" required />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+      <div class="chips" id="chips"></div>
+      <div class="grid" id="grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <dialog id="viewer">
+    <form method="dialog"><button class="close" aria-label="Close">&times;</button></form>
+    <img id="viewer-img" alt="" />
+    <div class="viewer-text"><h3 id="viewer-title"></h3><p id="viewer-desc"></p></div>
+  </dialog>
+
+  <footer>
+    Data from NASA EPIC, wheretheiss.at and the NASA Image and Video Library. Map tiles &copy; OpenStreetMap contributors.
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
